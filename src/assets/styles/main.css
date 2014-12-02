@@ -1,1 +1,28 @@
 /* Main.css */
+
+.dropdown-menu > li > a {
+    height: 45px;
+}
+
+.dropdown-menu .dropdown-text,
+.dropdown-menu .dropdown-desc {
+    font-weight: normal;
+    line-height: 1.4em;
+    overflow: hidden;
+    display: block;
+}
+
+.dropdown-menu .dropdown-desc {
+    color: #aaa;
+}
+
+.dropdown-menu .dropdown-img {
+    float: left;
+    margin: 2px 5px 0 0; 
+    max-width: 64px;
+}
+
+.dropdown-menu img {
+    height: 32px;
+    width: 32px;
+}
