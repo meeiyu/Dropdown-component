@@ -21,11 +21,13 @@ ExampleApp = React.createClass({
         return (
             /*jshint ignore:start */
             <div>
-                <BSDropdowns 
+                <BSDropdowns
+                    buttonName="Test1" 
                     name="dropdown"
                     options={DropdownSelectOptions1} />
 
-                <BSDropdowns 
+                <BSDropdowns
+                    buttonName="Test2" 
                     name="dropdown2"
                     options={DropdownSelectOptions2} />
             </div>

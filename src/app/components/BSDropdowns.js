@@ -9,6 +9,8 @@ var React = require('react'),
 
 BSDropdowns = React.createClass({
     propTypes: {
+        buttonName      : React.PropTypes.string.isRequired,
+        name            : React.PropTypes.string.isRequired,
         text            : React.PropTypes.string.isRequired,
         options         : React.PropTypes.array.isRequired
     },
@@ -16,6 +18,7 @@ BSDropdowns = React.createClass({
         return {
             text            : '',
             options         : [],
+            buttonName      : '',
             name            : ''
         };
     },
@@ -50,13 +53,13 @@ BSDropdowns = React.createClass({
                     id="dropdownMenu1" 
                     data-toggle="dropdown" 
                     aria-expanded="true">
-                    Dropdown
+                    {this.props.buttonName}
                     <span className="caret"></span>
                 </button>
                 <ul className="dropdown-menu" 
                     role="menu" 
                     aria-labelledby="dropdownMenu1" 
-                    name={this.props.text} >
+                    name={this.props.name} >
                     {this.renderOptions()}
                 </ul>
             </div>
