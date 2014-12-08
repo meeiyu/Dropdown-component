@@ -10,14 +10,13 @@ var React = require('react'),
 BSDropdowns = React.createClass({
     propTypes: {
         text            : React.PropTypes.string.isRequired,
-        options         : React.PropTypes.array.isRequired,
-        onChangeHandler : React.PropTypes.func
+        options         : React.PropTypes.array.isRequired
     },
     getDefaultProps: function() {
         return {
             text            : '',
             options         : [],
-            onChangeHandler : function() {}
+            name            : ''
         };
     },
     getInitialState: function() {
@@ -27,7 +26,7 @@ BSDropdowns = React.createClass({
     },
     renderOptions: function() {
         return this.state.optionsList.map(function(item, i) {
-            var className = (item.selected === true) ? 'disabled' : ' ';
+            var className = (item.disabled === true) ? 'disabled' : ' ';
             return (
                 /* jshint ignore:start */
                 <li key={i} value={item.id} role="presentation" className={className}>
@@ -45,11 +44,19 @@ BSDropdowns = React.createClass({
         return (
             /* jshint ignore:start */
             <div className="dropdown">
-                <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                <button 
+                    className="btn btn-default dropdown-toggle" 
+                    type="button" 
+                    id="dropdownMenu1" 
+                    data-toggle="dropdown" 
+                    aria-expanded="true">
                     Dropdown
                     <span className="caret"></span>
                 </button>
-                <ul className="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" name={this.props.text}>
+                <ul className="dropdown-menu" 
+                    role="menu" 
+                    aria-labelledby="dropdownMenu1" 
+                    name={this.props.text} >
                     {this.renderOptions()}
                 </ul>
             </div>
