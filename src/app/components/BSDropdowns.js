@@ -11,15 +11,15 @@ BSDropdowns = React.createClass({
     propTypes: {
         buttonName      : React.PropTypes.string.isRequired,
         name            : React.PropTypes.string.isRequired,
-        text            : React.PropTypes.string.isRequired,
-        options         : React.PropTypes.array.isRequired
+        options         : React.PropTypes.array.isRequired,
+        onClickHandler  : React.PropTypes.func
     },
     getDefaultProps: function() {
         return {
-            text            : '',
             options         : [],
             buttonName      : '',
-            name            : ''
+            name            : '',
+            onClickHandler  : function() {}
         };
     },
     getInitialState: function() {
@@ -27,12 +27,24 @@ BSDropdowns = React.createClass({
             optionsList     : this.props.options
         };
     },
+    clickHandler: function(id, name){
+        var targetVal=this.props.options[parseInt(id)-1];
+        //console.log(targetVal);
+        if(targetVal.disabled)
+        {
+            return
+        } else {
+            this.props.onClickHandler(id, name);
+        }
+    },
     renderOptions: function() {
+        var that = this;
+        var buttonName = that.props.name;
         return this.state.optionsList.map(function(item, i) {
             var className = (item.disabled === true) ? 'disabled' : ' ';
             return (
                 /* jshint ignore:start */
-                <li key={i} value={item.id} role="presentation" className={className}>
+                <li key={i} value={item.id} role="presentation" className={className} onClick={that.clickHandler.bind(null, item.id, buttonName)} name={that.props.name}>
                     <a role="menuitem" className="dropdown-option" href={item.href}>
                         <img className="dropdown-img" src={item.imageSrc}></img>
                         <span className="dropdown-text">{item.text}</span>
@@ -57,9 +69,8 @@ BSDropdowns = React.createClass({
                     <span className="caret"></span>
                 </button>
                 <ul className="dropdown-menu" 
-                    role="menu" 
-                    aria-labelledby="dropdownMenu1" 
-                    name={this.props.name} >
+                    role="menu"
+                    aria-labelledby="dropdownMenu1" >
                     {this.renderOptions()}
                 </ul>
             </div>
